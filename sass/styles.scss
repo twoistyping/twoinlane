@@ -58,6 +58,14 @@ a.btn {
     gap: 40px;
     grid-template-columns: calc((100% - 40px) * 0.3) calc((100% - 40px) * 0.7);
   }
+  .star-rating {
+    span {
+      font-size: 30px;
+      &.checked {
+        color: $almost-black;
+      }
+    }
+  }
   .bio .bio__content,
   .bio .bio__boosting,
   .reviews blockquote {
@@ -96,6 +104,9 @@ a.btn {
       &:before {
         background: $pink;
       }
+      .star-rating {
+        margin-bottom: 32px;
+      }
       dl {
         margin-bottom: 40px;
       }
@@ -108,6 +119,9 @@ a.btn {
   }
   .reviews {
     grid-column-start: 2;
+    .star-rating span {
+      font-size: 16px;
+    }
     blockquote {
       border: 1px solid $almost-black;
       margin: 0 0 40px;
