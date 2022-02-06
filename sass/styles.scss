@@ -5,11 +5,18 @@ $pink: #FFDCE1;
 $yellow: #FFF5C7;
 
 html {
-  background: $almost-white;
+  background: $yellow;
 }
 
 body {
+  background: url('../background.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: "Work Sans", sans-serif;
+  height: 100vh;
+  margin: 0;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5 {
@@ -41,25 +48,44 @@ a.btn {
   padding: 8px 24px;
   text-decoration: none;
   letter-spacing: 0.2em;
+  margin: 0 8px 16px 0;
   text-transform: uppercase;
   transition: all 300ms ease;
   &:hover {
     background: $almost-black;
     color: $almost-white;
   }
+  &.secondary {
+    background: $almost-black;
+    color: $almost-white;
+    &:hover {
+      background: transparent;
+      color: $almost-black;
+    }
+  }
 }
-
+.bottom-bar {
+  position: fixed;
+  z-index: 10000;
+  background: black;
+  width: calc(100vw - 48px);
+  color: white;
+  left: 0;
+  bottom: 0;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  .bottom-bar__icons {
+    p.logo {
+      color: $almost-white;
+      font-family: 'Sarabun', sans-serif;
+      text-transform: uppercase;
+    }
+  }
+}
 .content-wrapper {
-  max-width: 1440px;
   margin: 2em auto;
   width: calc(100% - 48px);
-  @media(min-width: 1000px) {
-    display: grid;
-    gap: 40px;
-    grid-template-columns: calc((100% - 40px) * 0.3) calc((100% - 40px) * 0.7);
-      margin: 8em auto;
-    width: calc(100% - 80px);
-  }
   .star-rating {
     span {
       font-size: 30px;
@@ -71,41 +97,34 @@ a.btn {
   .bio .bio__content,
   .bio .bio__boosting,
   .reviews blockquote {
-    position: relative;
-    &:before {
-      border-bottom: 1px solid $almost-black;
-      background: $yellow;
-      content: 'x';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: calc(100% - 8px);
-      height: 24px;
-      color: black;
-      text-align: right;padding-right: 8px;
+  }
+  .bio, .boosting, .review {
+    border: 1px solid $almost-black;
+    max-width: 100%;
+    position: fixed;
+    width: 500px;
+    height: auto;
+    @media(max-width: 900px) {
+      position: inherit !important;
+    }
+    .content {
+      padding: 0px 24px 24px;
     }
   }
   .bio {
+    background: $pink;
     grid-column-start: 1;
     margin-bottom: 40px;
+    left: 40px;
+    top: 40px;
+    z-index: 2;
     img {
       border: 1px solid $almost-black;
       margin-bottom: 40px;
       max-width: 100%;
-      width: 100%
+      width: 200px;
     }
-    .bio__content,
-    .bio__boosting {
-      border: 1px solid $almost-black;
-      padding: 48px 24px 24px;
-    }
-    .bio__content {
-      background: $pink;
-      margin-bottom: 40px;
-      &:before {
-        background: $pink;
-      }
+    .content__bio {
       .star-rating {
         margin-bottom: 32px;
       }
@@ -119,18 +138,61 @@ a.btn {
       }
     }
   }
+  .boosting {
+    background: $almost-white;
+    margin-bottom: 40px;
+    left: calc(100vw - 500px - 60px);
+    top: calc(100vh - 300px);
+    z-index: 1;
+  }
   .reviews {
     grid-column-start: 2;
     .star-rating span {
       font-size: 16px;
     }
-    blockquote {
+    .review {
       border: 1px solid $almost-black;
       margin: 0 0 40px;
-      background: $yellow;
-      padding: 48px 24px 24px;
-      @media(min-width: 1000px) {
-        padding: 64px 40px 40px;
+      background: $almost-white;
+      .star-rating, blockquote {
+        padding: 8px 24px;
+      }
+      blockquote {
+        margin: 0;
+        p:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .top-bar {
+    align-items: center;
+    background: $almost-black;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding: 8px;
+    p {
+      color: $almost-white;
+      margin: 0;
+    }
+    a {
+      border: 1px solid $almost-white;
+      text-decoration: none;
+      transition: all 300ms ease;
+      &:hover {
+        background: $almost-white;
+        svg path {
+          fill: $almost-black;
+        }
+      }
+      svg {
+        display: block;
+        height: 16px;
+        width: 16px;
+        path {
+          fill: $almost-white;
+        }
       }
     }
   }
