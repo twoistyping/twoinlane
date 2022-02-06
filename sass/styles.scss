@@ -64,11 +64,12 @@ a.btn {
     }
   }
 }
+
 .bottom-bar {
   position: fixed;
   z-index: 10000;
   background: black;
-  width: calc(100vw - 48px);
+  width: calc(100% - 48px);
   color: white;
   left: 0;
   bottom: 0;
@@ -83,6 +84,7 @@ a.btn {
     }
   }
 }
+
 .content-wrapper {
   margin: 2em auto;
   width: calc(100% - 48px);
