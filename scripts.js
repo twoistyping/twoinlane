@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const reviews = document.querySelectorAll(".review, .boosting, .bio");
   const closeButtons = document.querySelectorAll(".close-box");
   let topPos = 2;
+  let currentReview;
 
   reviews.forEach((review) => {
     if (!review.classList.contains('bio') && !review.classList.contains('boosting')) {
@@ -13,33 +14,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     review.addEventListener('mousedown', function(e) {
-      review.setAttribute('js-moving', '');
-      offset = [
+      const offset = [
         review.offsetLeft - e.clientX,
         review.offsetTop - e.clientY
       ];
 
+      review.setAttribute('data-offset', JSON.stringify(offset));
       topPos = topPos + 1;
       review.style.zIndex = topPos;
+      currentReview = review;
     }, true);
 
-    review.addEventListener('mousemove', function(event) {
-      event.preventDefault();
-      if (review.hasAttribute('js-moving')) {
-        mousePosition = {
-          x : event.clientX,
-          y : event.clientY,
-        };
-        review.style.left = (mousePosition.x + offset[0]) + 'px';
-        review.style.top  = (mousePosition.y + offset[1]) + 'px';
-      }
-    }, true);
+
   });
 
   document.addEventListener('mouseup', function() {
-    reviews.forEach((review) => {
-      review.removeAttribute('js-moving');
-    });
+    currentReview  = null;
+  }, true);
+
+  document.addEventListener('mousemove', function(event) {
+    event.preventDefault();
+    if (currentReview) {
+      event.preventDefault();
+      const mousePosition = {
+        x : event.clientX,
+        y : event.clientY,
+      };
+
+      const offset = JSON.parse(currentReview.getAttribute('data-offset'));
+      currentReview.style.left = (mousePosition.x + offset[0]) + 'px';
+      currentReview.style.top  = (mousePosition.y + offset[1]) + 'px';
+    }
   }, true);
 
   closeButtons.forEach(closeButton => {

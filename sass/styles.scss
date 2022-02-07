@@ -66,16 +66,16 @@ a.btn {
 }
 
 .bottom-bar {
-  position: fixed;
-  z-index: 10000;
   background: black;
-  width: calc(100% - 48px);
-  color: white;
-  left: 0;
   bottom: 0;
-  padding: 0 24px;
+  color: white;
   display: flex;
   justify-content: space-between;
+  left: 0;
+  padding: 0 24px;
+  position: fixed;
+  width: calc(100% - 48px);
+  z-index: 10000;
   .bottom-bar__icons {
     p.logo {
       color: $almost-white;
@@ -102,10 +102,11 @@ a.btn {
   }
   .bio, .boosting, .review {
     border: 1px solid $almost-black;
+    cursor: pointer;
     max-width: 100%;
     position: fixed;
-    width: 500px;
     height: auto;
+    width: 500px;
     @media(max-width: 900px) {
       position: inherit !important;
     }
